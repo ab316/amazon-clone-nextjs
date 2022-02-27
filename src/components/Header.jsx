@@ -1,10 +1,6 @@
-import Image from "next/image";
-import logoImage from "../../public/img/logo.png";
-import {
-  MenuIcon,
-  SearchIcon,
-  ShoppingCartIcon,
-} from "@heroicons/react/outline";
+import Image from 'next/image';
+import logoImage from '../../public/img/logo.png';
+import {MenuIcon, SearchIcon, ShoppingCartIcon} from '@heroicons/react/outline';
 
 const Header = () => {
   return (
@@ -45,13 +41,10 @@ const Header = () => {
               0
             </span>
             <ShoppingCartIcon className="h-10" />
-            <p className="hidden md:inline font-extrabold md:text-sm mt-2">
-              Basket
-            </p>
+            <p className="hidden md:inline font-extrabold md:text-sm mt-2">Basket</p>
           </div>
         </div>
       </div>
-
       {/* Bottom Nav */}
       <div className="flex items-center space-x-3 p-2 pl-6 bg-amazon_blue-light text-white text-sm">
         <p className="link flex items-center">
