@@ -1,8 +1,11 @@
 import Image from 'next/image';
-import logoImage from '../../public/img/logo.png';
 import {MenuIcon, SearchIcon, ShoppingCartIcon} from '@heroicons/react/outline';
+import {signIn, signOut, useSession} from 'next-auth/react';
+import logoImage from '../../public/img/logo.png';
 
 const Header = () => {
+  const {data: session, status} = useSession();
+
   return (
     <header>
       {/* Top Nav */}
@@ -28,8 +31,8 @@ const Header = () => {
         </div>
         {/* Right-side */}
         <div className="mx-6 flex items-center space-x-6 whitespace-nowrap text-xs text-white">
-          <div className="link">
-            <p>Hello Abdullah</p>
+          <div onClick={session ? signOut : signIn} className="link">
+            <p>{session ? `Hello, ${session.user.name}` : 'Sign In'}</p>
             <p className="font-extrabold md:text-sm">Accounts & Lists</p>
           </div>
           <div className="link">
