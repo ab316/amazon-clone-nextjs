@@ -47,7 +47,7 @@ const Product = ({id, title, price, description, category, image, rating, hasPri
       </div>
 
       {hasPrime && (
-        <div className="mt-5 flex items-center space-x-2">
+        <div className="mt-3 mb-1 flex items-center space-x-2">
           <Image src={PrimeTagImage} alt="Prime" width="48" height="48" objectFit="contain" />
           <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
         </div>
