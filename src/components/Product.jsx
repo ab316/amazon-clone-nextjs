@@ -3,10 +3,28 @@ import React, {useState} from 'react';
 import {StarIcon} from '@heroicons/react/solid';
 import Currency from 'react-currency-formatter';
 import PrimeTagImage from '../../public/img/prime-tag.png';
+import {useDispatch} from 'react-redux';
+import {addToBasket} from '../slices/basketSlice';
 
 const Product = ({id, title, price, description, category, image, rating, hasPrime}) => {
   // Random can not be used here as a different value will be generated on server and client side, causing errors
   // const [rating] = useState(Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1) + MIN_RATING));
+  const dispatch = useDispatch();
+
+  const addItemToBasket = () => {
+    const product = {
+      id,
+      title,
+      price,
+      description,
+      category,
+      image,
+      rating,
+      hasPrime,
+    };
+
+    dispatch(addToBasket(product));
+  };
 
   return (
     <div className="relative z-30 m-5 flex flex-col bg-white p-10">
@@ -29,13 +47,15 @@ const Product = ({id, title, price, description, category, image, rating, hasPri
       </div>
 
       {hasPrime && (
-        <div className="-mt-5 flex items-center space-x-2">
+        <div className="mt-5 flex items-center space-x-2">
           <Image src={PrimeTagImage} alt="Prime" width="48" height="48" objectFit="contain" />
           <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
         </div>
       )}
 
-      <button className="button mt-auto">Add to Basket</button>
+      <button className="button mt-auto" onClick={addItemToBasket}>
+        Add to Basket
+      </button>
     </div>
   );
 };

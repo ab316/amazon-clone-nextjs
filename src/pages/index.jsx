@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
 import ProductFeed from '../components/ProductFeed';
+import fakeProductsData from '../../fakeStoreProducts.json';
 
 export default function Home({products}) {
   return (
@@ -24,8 +25,10 @@ const MAX_RATING = 5;
 const MIN_RATING = 1;
 
 export async function getServerSideProps() {
-  const response = await fetch('https://fakestoreapi.com/products');
-  const products = await response.json();
+  // Commenting out the http request since fakestoreapi is responding very slow
+  // const response = await fetch('https://fakestoreapi.com/products');
+  // const products = await response.json();
+  const products = fakeProductsData;
   const updatedProducts = products.map((product) => ({
     ...product,
     rating: Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1) + MIN_RATING),
