@@ -29,8 +29,8 @@ export default async function handler(req, res) {
           allowed_countries: ['SE', 'PK', 'NO', 'DK'],
         },
         shipping_rates: ['shr_1Ka0IuKPUA7vc6KSdCie02Tv'],
-        success_url: `${req.headers.origin}/order_success=true`,
-        cancel_url: `${req.headers.origin}/order_canceled=true`,
+        success_url: `${req.headers.origin}/success`,
+        cancel_url: `${req.headers.origin}/canceled`,
         metadata: {
           email: email,
           images: JSON.stringify(items.map((item) => item.image)),
