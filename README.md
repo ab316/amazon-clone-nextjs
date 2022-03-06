@@ -15,10 +15,16 @@
 
 # Setup
 1. Run `yarn`
+1. Generate two random secrets e.g. using [www.random.org](https://www.random.org/) or [randomkeygen.com](https://randomkeygen.com/). These keys will be used as as the following environment variables
+   1. `SERVICE_ENCRYPTION_IV`
+   1. `SERVICE_ENCRYPTION_KEY`
 1. Set up Firebase as described below
 1. Set up Stripe as described below
 1. Make an environment variable file `.env.local` for running locally
 1. Deploy to Vercel (Optional)
+
+## Generate Encryption Secrets
+1. Generate two random
 
 ## Firebase
 
@@ -35,8 +41,20 @@
 1. Copy the code in to the file `firebase.js` in the repository root
 
 ### Admin SDK
-1. In the Firebase console, go to the project settings -> Service Accounts -> Generate new private key
-2. Save the file as `firebaseAccountKey.json` in the repository root
+1. In the Firebase console, go to the project settings -> Service Accounts -> Generate new private key. This will download a file
+1. Encrypt the file. You can encrypt the file online using [this tool](https://www.devglan.com/online-tools/aes-encryption-decryption)
+   1. Paste the contents of the downloaded file in the tool as the text to be encrypted
+   1. Mode = `CBC`
+   1. Key size = `128` bits
+   1. IV = value of `SERVICE_ENCRYPTION_IV` env var
+   1. Secret Key = value of `SERVICE_ENCRYPTION_KEY` env var
+   1. Output Text Format = `Base64`
+2. Save the encrypted content in a file `firebaseServiceAccount.enc.json` in the repository root. The content of the file should be:
+```
+{
+  "encrypted": "<THE BASE64 ENCRPYTED CONTENT>"
+}
+```
 
 ## Stripe
 
@@ -56,6 +74,8 @@ TODO
 For running the app locally, create a file `.env.local` and put the variables in it as follows:
 
 ```
+SERVICE_ENCRYPTION_IV=secret
+SERVICE_ENCRYPTION_KEY=secret
 GOOGLE_ID=secret
 GOOGLE_SECRET=secret
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=notSecret
@@ -66,6 +86,8 @@ NEXTAUTH_URL=http://localhost:3000
 
 ```
 
+1. `SERVICE_ENCRYPTION_IV` The Initialization vector for the AES encryption algorithm
+1. `SERVICE_ENCRYPTION_KEY` The secrey key for the AES encryption algorithm
 1. `GOOGLE_SECRET`
 1. `GOOGLE_ID`
 1. `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` Publishable key from the Stripe account

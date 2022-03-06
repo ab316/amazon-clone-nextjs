@@ -1,10 +1,12 @@
 import {buffer} from 'micro';
 import Stripe from 'stripe';
 import * as admin from 'firebase-admin';
-import serviceAccount from '../../../firebaseAccountKey.json';
+import {decrypt} from '../../utils';
+import serviceAccountEnc from '../../../firebaseServiceAccount.enc.json';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
+const serviceAccount = JSON.parse(decrypt(serviceAccountEnc.encrypted));
 
 const app = !admin.apps.length
   ? admin.initializeApp({
