@@ -41,7 +41,7 @@ const Checkout = () => {
 
           <div className="flex flex-col space-y-10 bg-white p-5">
             <h1 className="border-b pb-4 text-3xl">
-              {items.length ? 'Shopping Basket' : 'Your Amazon Baskey is empty'}
+              {items.length ? 'Shopping Basket' : 'Your Amazon Basket is empty'}
             </h1>
 
             {items.map((item, i) => (

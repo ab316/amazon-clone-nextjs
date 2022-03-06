@@ -28,7 +28,7 @@
 1. Select Start in test mode. You can use production mode as well
 1. On the next screen, select the desired region
 
-### Frontend App Setup
+### Web App
 1. In the Firebase console, go to the project settings
 1. Scroll down to the Web App
 1. In the SDK setup and configuration section, select npm
