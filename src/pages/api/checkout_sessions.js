@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         shipping_address_collection: {
           allowed_countries: ['SE', 'PK', 'NO', 'DK'],
         },
-        shipping_rates: ['shr_1Ka0IuKPUA7vc6KSdCie02Tv'],
+        shipping_rates: [process.env.STRIPE_SHIPPING_RATE_ID],
         success_url: `${req.headers.origin}/success`,
         cancel_url: `${req.headers.origin}/canceled`,
         metadata: {
