@@ -21,7 +21,7 @@ const Order = ({id, amount, amountShipping, items, images, timestamp}) => {
         </div>
 
         <p className="flex-1 self-end whitespace-nowrap text-right text-sm text-blue-500 sm:text-xl">
-          {items.length} items
+          {images.length} items
         </p>
 
         <p className="absolute top-2 right-2 w-40 truncate whitespace-nowrap text-xs lg:w-72">

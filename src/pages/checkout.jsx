@@ -19,7 +19,7 @@ const Checkout = () => {
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
     const checkoutSession = await axios.post('/api/checkout_sessions', {
-      items,
+      items: items.length > 1 ? items.slice(0, -1) : items,
       email: session.user.email,
     });
 

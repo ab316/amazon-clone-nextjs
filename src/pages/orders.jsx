@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
   const firebaseOrders = await firestore.getDocs(
     firestore.query(
       firestore.collection(db, `users/${session.user.email}/orders`),
-      firestore.orderBy('timestamp', 'desc'),
+      firestore.orderBy('timestamp', 'asc'),
     ),
   );
 
